@@ -25,14 +25,13 @@ class TransactionsRepository {
 
   public getBalance(): Balance {
     const { income, outcome } = this.transactions.reduce(
-      (total: any, balance) => {
+      (acc: any, balance) => {
         const key = balance.type;
-        if (!total[key]) {
-          total[key] = 0;
+        if (!acc[key]) {
+          acc[key] = 0;
         }
-        total[key] += balance.value;
-
-        return total;
+        acc[key] += balance.value;
+        return acc;
       },
       {},
     );
